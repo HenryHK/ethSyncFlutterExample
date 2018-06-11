@@ -23,46 +23,36 @@ class _SliderDemoState extends State<SliderDemo> {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            new Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget> [
-                new Slider(
+            new Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              new Slider(
                   value: _value,
                   min: 0.0,
                   max: 100.0,
-                  thumbOpenAtMin: true,
                   onChanged: (double value) {
                     setState(() {
                       _value = value;
                     });
-                  }
-                ),
-                const Text('Continuous'),
-              ]
-            ),
+                  }),
+              const Text('Continuous'),
+            ]),
+            new Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              const Slider(value: 0.25, onChanged: null),
+              const Text('Disabled'),
+            ]),
             new Column(
               mainAxisSize: MainAxisSize.min,
-              children: <Widget> [
-                const Slider(value: 0.25, thumbOpenAtMin: true, onChanged: null),
-                const Text('Disabled'),
-              ]
-            ),
-            new Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget> [
+              children: <Widget>[
                 new Slider(
-                  value: _discreteValue,
-                  min: 0.0,
-                  max: 100.0,
-                  divisions: 5,
-                  label: '${_discreteValue.round()}',
-                  thumbOpenAtMin: true,
-                  onChanged: (double value) {
-                    setState(() {
-                      _discreteValue = value;
-                    });
-                  }
-                ),
+                    value: _discreteValue,
+                    min: 0.0,
+                    max: 100.0,
+                    divisions: 5,
+                    label: '${_discreteValue.round()}',
+                    onChanged: (double value) {
+                      setState(() {
+                        _discreteValue = value;
+                      });
+                    }),
                 const Text('Discrete'),
               ],
             ),

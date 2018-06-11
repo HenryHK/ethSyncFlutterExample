@@ -4,9 +4,12 @@
 
 import 'package:flutter/material.dart';
 
-const String _kAsset0 = 'assets/etceth-asia.jpg';              //'packages/flutter_gallery_assets/shrine/vendors/zach.jpg';
-const String _kAsset1 = 'assets/ethBullet.png';          //'packages/flutter_gallery_assets/shrine/vendors/16c477b.jpg';
-const String _kAsset2 = 'assets/etcBullet.png';                  //'packages/flutter_gallery_assets/shrine/vendors/sandra-adams.jpg';
+const String _kAsset0 =
+    'assets/etceth-asia.jpg'; //'packages/flutter_gallery_assets/shrine/vendors/zach.jpg';
+const String _kAsset1 =
+    'assets/ethBullet.png'; //'packages/flutter_gallery_assets/shrine/vendors/16c477b.jpg';
+const String _kAsset2 =
+    'assets/etcBullet.png'; //'packages/flutter_gallery_assets/shrine/vendors/sandra-adams.jpg';
 
 class DrawerDemo extends StatefulWidget {
   static const String routeName = '/material/drawer';
@@ -19,12 +22,19 @@ class _DrawerDemoState extends State<DrawerDemo> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   static const List<String> _drawerContents = const <String>[
-    'ETH', 'eth', 'ETC', 'btc', '\u20AC', '\$', '\u00A3', '\u2807',
+    'ETH',
+    'eth',
+    'ETC',
+    'btc',
+    '\u20AC',
+    '\$',
+    '\u00A3',
+    '\u2807',
   ];
 
   AnimationController _controller;
   Animation<double> _drawerContentsOpacity;
-  Animation<FractionalOffset> _drawerDetailsPosition;
+  Animation<Offset> _drawerDetailsPosition;
   bool _showDrawerContents = true;
 
   @override
@@ -38,9 +48,9 @@ class _DrawerDemoState extends State<DrawerDemo> with TickerProviderStateMixin {
       parent: new ReverseAnimation(_controller),
       curve: Curves.fastOutSlowIn,
     );
-    _drawerDetailsPosition = new Tween<FractionalOffset>(
-      begin: const FractionalOffset(0.0, -1.0),
-      end: const FractionalOffset(0.0, 0.0),
+    _drawerDetailsPosition = new Tween<Offset>(
+      begin: const Offset(0.0, -1.0),
+      end: const Offset(0.0, 0.0),
     ).animate(new CurvedAnimation(
       parent: _controller,
       curve: Curves.fastOutSlowIn,
@@ -68,8 +78,7 @@ class _DrawerDemoState extends State<DrawerDemo> with TickerProviderStateMixin {
   void _showNotImplementedMessage() {
     Navigator.of(context).pop(); // Dismiss the drawer.
     _scaffoldKey.currentState.showSnackBar(const SnackBar(
-      content: const Text("The drawer's items don't do anything yet")
-    ));
+        content: const Text("The drawer's items don't do anything yet")));
   }
 
   @override
@@ -93,7 +102,8 @@ class _DrawerDemoState extends State<DrawerDemo> with TickerProviderStateMixin {
             new UserAccountsDrawerHeader(
               accountName: const Text('wallet drawer||Widget'),
               accountEmail: const Text('support@lu.com'),
-              currentAccountPicture: new CircleAvatar(backgroundImage: new AssetImage(_kAsset0)),
+              currentAccountPicture:
+                  new CircleAvatar(backgroundImage: new AssetImage(_kAsset0)),
               otherAccountsPictures: <Widget>[
                 new CircleAvatar(backgroundImage: new AssetImage(_kAsset1)),
                 new CircleAvatar(backgroundImage: new AssetImage(_kAsset2)),
@@ -173,7 +183,8 @@ class _DrawerDemoState extends State<DrawerDemo> with TickerProviderStateMixin {
               ),
               new Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: new Text('Tap here to open the drawer\nCheck balances\nCopy addresses\n\n\nUse Firebase for OAuth &&||syncing?',
+                child: new Text(
+                  'Tap here to open the drawer\nCheck balances\nCopy addresses\n\n\nUse Firebase for OAuth &&||syncing?',
                   style: Theme.of(context).textTheme.subhead,
                 ),
               ),

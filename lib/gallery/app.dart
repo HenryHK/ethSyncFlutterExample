@@ -12,13 +12,14 @@ import 'home.dart';
 import 'item.dart';
 import 'updates.dart';
 
-final Map<String, WidgetBuilder> _kRoutes = new Map<String, WidgetBuilder>.fromIterable(
+final Map<String, WidgetBuilder> _kRoutes =
+    new Map<String, WidgetBuilder>.fromIterable(
   // For a different example of how to set up an application routing table,
   // consider the Stocks example:
   // https://github.com/flutter/flutter/blob/master/examples/stocks/lib/main.dart
   kAllGalleryItems,
-  key: (GalleryItem item) => item.routeName,
-  value: (GalleryItem item) => item.buildRoute,
+  key: (item) => item.routeName,
+  value: (item) => item.buildRoute,
 );
 
 final ThemeData _kGalleryLightTheme = new ThemeData(
@@ -32,13 +33,13 @@ final ThemeData _kGalleryDarkTheme = new ThemeData(
 );
 
 class GalleryApp extends StatefulWidget {
-  const GalleryApp({
-    this.updateUrlFetcher,
-    this.enablePerformanceOverlay: true,
-    this.checkerboardRasterCacheImages: true,
-    this.onSendFeedback,
-    Key key}
-  ) : super(key: key);
+  const GalleryApp(
+      {this.updateUrlFetcher,
+      this.enablePerformanceOverlay: true,
+      this.checkerboardRasterCacheImages: true,
+      this.onSendFeedback,
+      Key key})
+      : super(key: key);
 
   final UpdateUrlFetcher updateUrlFetcher;
 
@@ -53,7 +54,7 @@ class GalleryApp extends StatefulWidget {
 }
 
 class GalleryAppState extends State<GalleryApp> {
-  bool _useLightTheme = false;     //set main theme
+  bool _useLightTheme = false; //set main theme
   bool _showPerformanceOverlay = false;
   bool _checkerboardRasterCacheImages = false;
   double _timeDilation = 1.0;
@@ -84,17 +85,22 @@ class GalleryAppState extends State<GalleryApp> {
         });
       },
       showPerformanceOverlay: _showPerformanceOverlay,
-      onShowPerformanceOverlayChanged: widget.enablePerformanceOverlay ? (bool value) {
-        setState(() {
-          _showPerformanceOverlay = value;
-        });
-      } : null,
+      onShowPerformanceOverlayChanged: widget.enablePerformanceOverlay
+          ? (bool value) {
+              setState(() {
+                _showPerformanceOverlay = value;
+              });
+            }
+          : null,
       checkerboardRasterCacheImages: _checkerboardRasterCacheImages,
-      onCheckerboardRasterCacheImagesChanged: widget.checkerboardRasterCacheImages ? (bool value) {
-        setState(() {
-          _checkerboardRasterCacheImages = value;
-        });
-      } : null,
+      onCheckerboardRasterCacheImagesChanged:
+          widget.checkerboardRasterCacheImages
+              ? (bool value) {
+                  setState(() {
+                    _checkerboardRasterCacheImages = value;
+                  });
+                }
+              : null,
       onPlatformChanged: (TargetPlatform value) {
         setState(() {
           _platform = value == defaultTargetPlatform ? null : value;
@@ -110,7 +116,8 @@ class GalleryAppState extends State<GalleryApp> {
             // We delay the time dilation change long enough that the user can see
             // that the checkbox in the drawer has started reacting, then we slam
             // on the brakes so that they see that the time is in fact now dilated.
-            _timeDilationTimer = new Timer(const Duration(milliseconds: 150), () {
+            _timeDilationTimer =
+                new Timer(const Duration(milliseconds: 150), () {
               timeDilation = _timeDilation;
             });
           } else {
@@ -131,7 +138,8 @@ class GalleryAppState extends State<GalleryApp> {
     return new MaterialApp(
       title: 'ethSync',
       color: Colors.grey,
-      theme: (_useLightTheme ? _kGalleryLightTheme : _kGalleryDarkTheme).copyWith(platform: _platform ?? defaultTargetPlatform),
+      theme: (_useLightTheme ? _kGalleryLightTheme : _kGalleryDarkTheme)
+          .copyWith(platform: _platform ?? defaultTargetPlatform),
       showPerformanceOverlay: _showPerformanceOverlay,
       checkerboardRasterCacheImages: _checkerboardRasterCacheImages,
       routes: _kRoutes,
